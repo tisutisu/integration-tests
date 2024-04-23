@@ -1,0 +1,13 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: e2e-tests-pipeline
+spec:
+  tasks:
+    - name: e2e-tests-task
+      taskSpec:
+        steps:
+          - name: run e2e-tests
+            image: alpine
+            script: |
+              echo "Running the e2e-tests"
