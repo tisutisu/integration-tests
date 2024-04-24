@@ -10,10 +10,10 @@ spec:
       type: string
   tasks:
     - name: e2e-tests-task
-      taskSpec:
-        params:
+      params:
         - name: SNAPSHOT
           value: $(params.SNAPSHOT)
+      taskSpec:
         steps:
           - name: e2e-tests
             image: alpine
