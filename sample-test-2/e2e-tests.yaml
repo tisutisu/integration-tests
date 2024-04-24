@@ -6,7 +6,7 @@ spec:
   params:
     - description: 'Snapshot of the application'
       name: SNAPSHOT
-      default: '{"components": [{"name":"test-app", "containerImage": "quay.io/example/repo:latest"}]}'
+      default: ''
       type: string
   tasks:
     - name: e2e-tests-task
@@ -25,5 +25,7 @@ spec:
             script: |
               echo "Running the e2e-tests"
               echo "Got SS: ${SNAPSHOT}"
+              BUILT_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
+              echo "Built image: ${BUILT_IMAGE}"
 
 
