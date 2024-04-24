@@ -3,6 +3,10 @@ kind: Pipeline
 metadata:
   name: e2e-tests-pipeline
 spec:
+  params:
+    - description: 'Snapshot of the application'
+      name: SNAPSHOT
+      type: string
   tasks:
     - name: e2e-tests-task
       taskSpec:
