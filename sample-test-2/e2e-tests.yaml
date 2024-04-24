@@ -15,6 +15,9 @@ spec:
               echo "Got NS: ${NAMESPACE}"
               export KUBECONFIG=$(workspaces.cluster-credentials.path)/kubeconfig
               echo "KUBECONFIG: ${KUBECONFIG}"
+      workspaces:
+        - name: cluster-credentials
+          optional: true
 workspaces:
   - name: cluster-credentials
     optional: true
