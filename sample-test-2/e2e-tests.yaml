@@ -18,7 +18,7 @@ spec:
         - name: SNAPSHOT
         steps:
           - name: e2e-tests
-            image: alpine
+            image: registry.redhat.io/openshift4/ose-cli:latest
             env:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
