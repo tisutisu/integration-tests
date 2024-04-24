@@ -6,6 +6,7 @@ spec:
   params:
     - description: 'Snapshot of the application'
       name: SNAPSHOT
+      default: '{"components": [{"name":"test-app", "containerImage": "quay.io/example/repo:latest"}]}'
       type: string
   tasks:
     - name: e2e-tests-task
