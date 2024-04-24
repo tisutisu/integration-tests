@@ -8,23 +8,33 @@ spec:
       name: SNAPSHOT
       default: ''
       type: string
+    - description: 'Namespace where the application is running'
+      name: NAMESPACE
+      default: ""
+      type: string
   tasks:
     - name: e2e-tests-task
       params:
         - name: SNAPSHOT
           value: $(params.SNAPSHOT)
+        - name: NAMESPACE
+          value: $(params.NAMESPACE)
       taskSpec:
         params:
         - name: SNAPSHOT
+        - name: NAMESPACE
         steps:
           - name: e2e-tests
-            image: registry.redhat.io/openshift4/ose-cli:latest
+            image: quay.io/redhat-appstudio/appstudio-utils:f58ba64422b4d9bbcb4b296fbfe7b60f7793c3c1
             env:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
+            - name: NAMESPACE
+              value: $(params.NAMESPACE)
             script: |
               echo "Running the e2e-tests"
               echo "Got SS: ${SNAPSHOT}"
+              echo "Got NS: ${NAMESPACE}"
               BUILT_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
               echo "Built image: ${BUILT_IMAGE}"
 
