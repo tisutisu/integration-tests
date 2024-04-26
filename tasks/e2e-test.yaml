@@ -1,0 +1,51 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: e2e-test
+spec:
+  description: >-
+    This task can be used to run e2e tests
+  params:
+    - name: e2e_test_namespace
+      type: string
+    - name: app_suffix
+      type: string
+    - name: ec_pipelines_repo_url
+      type: string
+    - name: ec_pipelines_repo_revision
+      type: string
+  steps:
+    - name: e2e-test
+      image: quay.io/susdas/e2e:next
+      # a la infra-deployment updates, when PRs merge in e2e-tests, PRs will be opened
+      # against build-definitions to update this tag
+      args: [
+        "--ginkgo.label-filter=build-templates-e2e",
+        "--ginkgo.no-color",
+        "--ginkgo.v",
+        "--ginkgo.timeout=2h"
+      ]
+      securityContext:
+        capabilities:
+          add:
+          - SETFCAP
+      env:
+      - name: APP_SUFFIX
+        value: "$(params.app_suffix)"
+      - name: COMPONENT_REPO_URLS
+        value: "https://github.com/redhat-appstudio-qe/devfile-sample-python-basic"
+      - name: QUAY_E2E_ORGANIZATION
+        value: redhat-appstudio
+      - name: E2E_APPLICATIONS_NAMESPACE
+        value: "$(params.e2e_test_namespace)"
+      - name: GITHUB_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: github
+            key: token
+      - name: MY_GITHUB_ORG
+        value: redhat-appstudio-appdata
+      - name: EC_PIPELINES_REPO_URL
+        value: $(params.ec_pipelines_repo_url)
+      - name: EC_PIPELINES_REPO_REVISION
+        value: $(params.ec_pipelines_repo_revision)
