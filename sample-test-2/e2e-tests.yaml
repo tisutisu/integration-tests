@@ -49,6 +49,11 @@ spec:
         - prepare-e2e-tests
       taskRef:
         name: e2e-test
+        params:
+        - name: e2e_test_namespace
+        - name: app_suffix
+        - name: ec_pipelines_repo_url
+        - name: ec_pipelines_repo_revision
       # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
       timeout: "2h"
 
