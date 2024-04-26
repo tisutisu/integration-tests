@@ -36,21 +36,21 @@ spec:
               SOURCE_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
               echo "Built image: ${SOURCE_IMAGE}"
     - name: run-e2e-tests
-        params:
-          - name: e2e_test_namespace
-            value: $(params.e2e_test_namespace)
-          - name: app_suffix
-            value: "ref-{{ revision }}"
-          - name: ec_pipelines_repo_url
-            value: "{{ source_url }}"
-          - name: ec_pipelines_repo_revision
-            value: "{{ revision }}"
-        runAfter:
-          - prepare-e2e-tests
-        taskRef:
-          name: e2e-test
-        # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
-        timeout: "2h"
+      params:
+        - name: e2e_test_namespace
+          value: $(params.e2e_test_namespace)
+        - name: app_suffix
+          value: "ref-{{ revision }}"
+        - name: ec_pipelines_repo_url
+          value: "{{ source_url }}"
+        - name: ec_pipelines_repo_revision
+          value: "{{ revision }}"
+      runAfter:
+        - prepare-e2e-tests
+      taskRef:
+        name: e2e-test
+      # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
+      timeout: "2h"
 
 
 
