@@ -49,7 +49,6 @@ spec:
       runAfter:
         - prepare-e2e-tests
       taskRef:
-        name: e2e-test
         resolver: git
         params:
           - name: url
