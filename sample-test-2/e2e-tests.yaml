@@ -12,10 +12,13 @@ spec:
       type: string
     - name: repo_url
       value: "{{ repo_url }}"
+      default: "default_repo_url_value"
     - name: revision
       value: "{{ revision }}"
+      default: "default_revision_value"
     - name: e2e_test_namespace
       value: build-templates-e2e
+      default: "default_e2e_tests_namespace_value"
   tasks:
     - name: prepare-e2e-tests
       params:
@@ -31,7 +34,7 @@ spec:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
             script: |
-              echo "Running the e2e-tests"
+              echo "Preparing to run the e2e-tests"
               echo "Got SS: ${SNAPSHOT}"
               SOURCE_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
               echo "Built image: ${SOURCE_IMAGE}"
