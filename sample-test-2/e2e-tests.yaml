@@ -26,7 +26,7 @@ spec:
           value: $(params.e2e_test_namespace)
         - name: repo_url
           value: $(params.repo_url)
-        - name: repo_revision
+        - name: revision
           value: $(params.revision)
       taskSpec:
         params:
@@ -51,7 +51,7 @@ spec:
         - name: ec_pipelines_repo_url
           value: $(params.repo_url)
         - name: ec_pipelines_repo_revision
-          value: $(params.repo_revision)
+          value: $(params.revision)
       runAfter:
         - prepare-e2e-tests
       taskRef:
@@ -60,7 +60,7 @@ spec:
           - name: url
             value: $(params.repo_url)
           - name: revision
-            value: $(params.repo_revision)
+            value: $(params.revision)
           - name: pathInRepo
             value: tasks/e2e-test.yaml
 
