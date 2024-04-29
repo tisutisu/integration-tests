@@ -2,8 +2,6 @@ apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   name: e2e-tests-pipeline
-  annotations:
-    pipelinesascode.tekton.dev/task: "[tasks/e2e-test.yaml]"
 spec:
   params:
     - description: 'Snapshot of the application'
@@ -52,6 +50,15 @@ spec:
         - prepare-e2e-tests
       taskRef:
         name: e2e-test
+        resolver: git
+        params:
+          - name: url
+            value: $(params.repo_url)
+          - name: revision
+            value: $(params.revision)
+          - name: pathInRepo
+            value: tasks/e2e-test.yaml
+
       # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
       timeout: "2h"
 
