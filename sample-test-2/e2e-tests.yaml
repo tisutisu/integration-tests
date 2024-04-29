@@ -10,18 +10,24 @@ spec:
       type: string
     - name: repo_url
       value: "{{ repo_url }}"
-      default: "default_repo_url_value"
+      default: ""
     - name: revision
       value: "{{ revision }}"
-      default: "default_revision_value"
+      default: ""
     - name: e2e_test_namespace
       value: build-templates-e2e
-      default: "default_e2e_tests_namespace_value"
+      default: ""
   tasks:
     - name: prepare-e2e-tests
       params:
         - name: SNAPSHOT
           value: $(params.SNAPSHOT)
+        - name: e2e_test_namespace
+          value: $(params.e2e_test_namespace)
+        - name: repo_url
+          value: $(params.repo_url)
+        - name: repo_revision
+          value: $(params.revision)
       taskSpec:
         params:
         - name: SNAPSHOT
@@ -41,11 +47,11 @@ spec:
         - name: e2e_test_namespace
           value: $(params.e2e_test_namespace)
         - name: app_suffix
-          value: "app-integration"
+          value: "app-$()"
         - name: ec_pipelines_repo_url
-          value: "{{ source_url }}"
+          value: $(params.repo_url)
         - name: ec_pipelines_repo_revision
-          value: "{{ revision }}"
+          value: $(params.repo_revision)
       runAfter:
         - prepare-e2e-tests
       taskRef:
@@ -54,7 +60,7 @@ spec:
           - name: url
             value: $(params.repo_url)
           - name: revision
-            value: $(params.revision)
+            value: $(params.repo_revision)
           - name: pathInRepo
             value: tasks/e2e-test.yaml
 
