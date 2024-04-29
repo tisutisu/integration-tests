@@ -40,7 +40,7 @@ spec:
         - name: e2e_test_namespace
           value: $(params.e2e_test_namespace)
         - name: app_suffix
-          value: $(params.app_suffix)
+          value: "app-integration"
         - name: ec_pipelines_repo_url
           value: "{{ source_url }}"
         - name: ec_pipelines_repo_revision
