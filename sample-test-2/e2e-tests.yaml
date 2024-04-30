@@ -49,7 +49,7 @@ spec:
         - name: app_suffix
           value: "app-intergration"
         - name: ec_pipelines_repo_url
-          value: "https://github.com/tisutisu/integration-tests.gi"
+          value: "https://github.com/tisutisu/integration-tests.git"
         - name: ec_pipelines_repo_revision
           value: "main"
       runAfter:
@@ -58,7 +58,7 @@ spec:
         resolver: git
         params:
           - name: url
-            value: "https://github.com/tisutisu/integration-tests.gi"
+            value: "https://github.com/tisutisu/integration-tests.git"
           - name: revision
             value: "main"
           - name: pathInRepo
