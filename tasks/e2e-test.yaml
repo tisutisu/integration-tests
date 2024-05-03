@@ -35,7 +35,8 @@ spec:
       - name: COMPONENT_REPO_URLS
         value: "https://github.com/redhat-appstudio-qe/devfile-sample-python-basic"
       - name: QUAY_E2E_ORGANIZATION
-        value: redhat-appstudio
+      # Need to be changed to redhat-appstudio
+        value: susdas
       - name: E2E_APPLICATIONS_NAMESPACE
         value: "$(params.e2e_test_namespace)"
       - name: GITHUB_TOKEN
@@ -44,7 +45,8 @@ spec:
             name: github
             key: token
       - name: MY_GITHUB_ORG
-        value: redhat-appstudio-appdata
+      # Need to be changed to redhat-appstudio-appdata
+        value: susdas-qe
       - name: EC_PIPELINES_REPO_URL
         value: $(params.ec_pipelines_repo_url)
       - name: EC_PIPELINES_REPO_REVISION

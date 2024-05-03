@@ -49,7 +49,7 @@ spec:
         - name: app_suffix
           value: "app-intergration"
         - name: ec_pipelines_repo_url
-          value: "https://github.com/tisutisu/integration-tests.git"
+          value: "https://github.com/redhat-appstudio/build-definitions.git"
         - name: ec_pipelines_repo_revision
           value: "main"
       runAfter:
@@ -63,7 +63,6 @@ spec:
             value: "main"
           - name: pathInRepo
             value: tasks/e2e-test.yaml
-
       # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
       timeout: "2h"
 
