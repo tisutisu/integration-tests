@@ -45,7 +45,7 @@ spec:
     - name: run-e2e-tests
       params:
         - name: e2e_test_namespace
-          value: "integration1-hwyt-tenant"
+          value: "build-templates-e2e"
         - name: app_suffix
           value: "app-intergration"
         - name: ec_pipelines_repo_url
