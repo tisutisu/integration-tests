@@ -42,6 +42,10 @@ spec:
               echo "Got SS: ${SNAPSHOT}"
               SOURCE_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
               echo "Built image: ${SOURCE_IMAGE}"
+              
+              git clone --branch integration-test https://github.com/tisutisu/e2e-tests.git
+              cd e2e-tests/
+              make setup-source-build 
     - name: run-e2e-tests
       params:
         - name: e2e_test_namespace
@@ -65,8 +69,6 @@ spec:
             value: tasks/e2e-test.yaml
       # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
       timeout: "2h"
-  workspaces:
-    - name: test-workspace
 
 
 
