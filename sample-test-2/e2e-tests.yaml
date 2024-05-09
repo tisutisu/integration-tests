@@ -65,6 +65,8 @@ spec:
             value: tasks/e2e-test.yaml
       # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
       timeout: "2h"
+  workspaces:
+    - name: test-workspace
 
 
 
