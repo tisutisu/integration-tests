@@ -45,7 +45,7 @@ spec:
             script: |
               echo "Preparing to run the e2e-tests"
               echo "Got SS: ${SNAPSHOT}"
-              SOURCE_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
+              export SOURCE_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
               echo "Built image: ${SOURCE_IMAGE}"
               
               git clone --branch integration-test https://github.com/tisutisu/e2e-tests.git
