@@ -37,6 +37,11 @@ spec:
             env:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
+            - name: QUAY_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: quay_token
+                  key: token
             script: |
               echo "Preparing to run the e2e-tests"
               echo "Got SS: ${SNAPSHOT}"
@@ -45,7 +50,8 @@ spec:
               
               git clone --branch integration-test https://github.com/tisutisu/e2e-tests.git
               cd e2e-tests/
-              make setup-source-build 
+              make setup-source-build
+
     - name: run-e2e-tests
       params:
         - name: e2e_test_namespace
