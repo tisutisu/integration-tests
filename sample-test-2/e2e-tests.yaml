@@ -33,7 +33,7 @@ spec:
         - name: SNAPSHOT
         steps:
           - name: e2e-tests
-            image: quay.io/redhat-appstudio/appstudio-utils:f58ba64422b4d9bbcb4b296fbfe7b60f7793c3c1
+            image: quay.io/susdas/appsudio-utils:with-make
             env:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
