@@ -37,20 +37,29 @@ spec:
             env:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
-            - name: QUAY_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: quay-token
-                  key: token
+            # - name: QUAY_TOKEN
+            #   valueFrom:
+            #     secretKeyRef:
+            #       name: quay-token
+            #       key: token
             script: |
               echo "Preparing to run the e2e-tests"
               echo "Got SS: ${SNAPSHOT}"
               export SOURCE_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
               echo "Built image: ${SOURCE_IMAGE}"
               
-              git clone --branch integration-test https://github.com/tisutisu/e2e-tests.git
+              git clone --branch setup-source-build https://github.com/tisutisu/e2e-tests.git
               cd e2e-tests/
               make setup-source-build
+            
+            volumeMounts:
+              - mountPath: /root/.docker/config.json
+                subPath: .dockerconfigjson
+                name: quay-secret
+        volumes:
+          - name: quay-secret
+            secret:
+              secretName: quay-token
 
     - name: run-e2e-tests
       params:
