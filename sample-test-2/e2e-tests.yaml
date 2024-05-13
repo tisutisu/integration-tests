@@ -31,17 +31,15 @@ spec:
       taskSpec:
         params:
         - name: SNAPSHOT
+        results:
+          - name: custom-source-build-bundle
+            desscription: "custom bundle for source build pipeline"
         steps:
           - name: e2e-tests
             image: quay.io/susdas/appstudio-utils:with-make-and-oc
             env:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
-            # - name: QUAY_TOKEN
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: quay-token
-            #       key: token
             script: |
               echo "Preparing to run the e2e-tests"
               echo "Got SS: ${SNAPSHOT}"
@@ -52,10 +50,8 @@ spec:
               cd e2e-tests/
               make setup-source-build
 
-              # Debug command
-              oc whoami
-              oc get pods
-            
+              echo -n $(CUSTOM_SOURCE_BUILD_PIPELINE_BUNDLE) | tee $(results.custom-source-build-bundle.path)
+        
             volumeMounts:
               - mountPath: /root/.docker/config.json
                 subPath: .dockerconfigjson
