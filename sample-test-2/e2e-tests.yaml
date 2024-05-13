@@ -33,7 +33,9 @@ spec:
         - name: SNAPSHOT
         results:
           - name: custom-source-build-bundle
-            desscription: "custom bundle for source build pipeline"
+            description: "custom bundle for source build pipeline"
+          - name: current-date-human-readable
+            description: The current date in human readable format
         steps:
           - name: e2e-tests
             image: quay.io/susdas/appstudio-utils:with-make-and-oc
