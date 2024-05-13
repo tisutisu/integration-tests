@@ -50,7 +50,7 @@ spec:
               cd e2e-tests/
               make setup-source-build
 
-              echo -n $(CUSTOM_SOURCE_BUILD_PIPELINE_BUNDLE) | tee $(results.custom-source-build-bundle.path)
+              echo -n ${CUSTOM_SOURCE_BUILD_PIPELINE_BUNDLE} | tee $(results.custom-source-build-bundle.path)
         
             volumeMounts:
               - mountPath: /root/.docker/config.json
