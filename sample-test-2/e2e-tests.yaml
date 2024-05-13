@@ -53,6 +53,8 @@ spec:
               make setup-source-build
 
               echo -n ${CUSTOM_SOURCE_BUILD_PIPELINE_BUNDLE} | tee $(results.custom-source-build-bundle.path)
+
+              date | tee $(results.current-date-human-readable.path)
         
             volumeMounts:
               - mountPath: /root/.docker/config.json
