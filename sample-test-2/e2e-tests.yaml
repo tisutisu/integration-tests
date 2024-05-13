@@ -51,6 +51,10 @@ spec:
               git clone --branch setup-source-build https://github.com/tisutisu/e2e-tests.git
               cd e2e-tests/
               make setup-source-build
+
+              # Debug command
+              oc whoami
+              oc get pods
             
             volumeMounts:
               - mountPath: /root/.docker/config.json
