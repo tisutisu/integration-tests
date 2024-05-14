@@ -34,7 +34,7 @@ spec:
         results:
           - name: custom-source-build-bundle
             description: "custom bundle for source build pipeline"
-          - name: current-date-human-readable
+          - name: current-source-build-image
             description: The current date in human readable format
         steps:
           - name: e2e-tests
@@ -44,17 +44,19 @@ spec:
               value: $(params.SNAPSHOT)
             script: |
               echo "Preparing to run the e2e-tests"
-              echo "Got SS: ${SNAPSHOT}"
+              echo "SNAPSHOT: ${SNAPSHOT}"
               export SOURCE_IMAGE=$(echo -n ${SNAPSHOT} | jq -r .components[0].containerImage)
               echo "Built image: ${SOURCE_IMAGE}"
               
               git clone --branch setup-source-build https://github.com/tisutisu/e2e-tests.git
               cd e2e-tests/
-              make setup-source-build
-
+              make setup-source-build | tee cmd_output
+              last_line_output=$(tail -n 1 cmd_output)
+              IFS='='
+              read -ra arr <<< "$last_line_output"
+              CUSTOM_SOURCE_BUILD_PIPELINE_BUNDLE=${arr[1]}
+              
               echo -n ${CUSTOM_SOURCE_BUILD_PIPELINE_BUNDLE} | tee $(results.custom-source-build-bundle.path)
-
-              date | tee $(results.current-date-human-readable.path)
         
             volumeMounts:
               - mountPath: /root/.docker/config.json
