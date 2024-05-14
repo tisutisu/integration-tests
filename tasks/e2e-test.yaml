@@ -14,6 +14,8 @@ spec:
       type: string
     - name: ec_pipelines_repo_revision
       type: string
+    - name: custom_source_build_bundle
+      type: string
   steps:
     - name: e2e-test
       image: quay.io/redhat-appstudio/e2e-tests:27b9e94fee065d8de74a82f5ca726df6c40fd64a
@@ -51,3 +53,5 @@ spec:
         value: $(params.ec_pipelines_repo_url)
       - name: EC_PIPELINES_REPO_REVISION
         value: $(params.ec_pipelines_repo_revision)
+      - name: CUSTOM_SOURCE_BUILD_PIPELINE_BUNDLE
+        value: $(params.custom_source_build_bundle)
