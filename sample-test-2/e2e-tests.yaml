@@ -17,6 +17,7 @@ spec:
     - name: e2e_test_namespace
       value: build-templates-e2e
       default: ""
+      description: "namespace where e2e-tests will run"
   tasks:
     - name: prepare-e2e-tests
       params:
