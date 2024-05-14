@@ -76,7 +76,7 @@ spec:
         - name: ec_pipelines_repo_revision
           value: "main"
         - name: custom_source_build_bundle
-          value: $(results.custom-source-build-bundle.path)
+          value: "$(tasks.prepare-e2e-tests.results.custom-source-build-bundle)"
       runAfter:
         - prepare-e2e-tests
       taskRef:
