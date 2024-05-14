@@ -22,12 +22,6 @@ spec:
       params:
         - name: SNAPSHOT
           value: $(params.SNAPSHOT)
-        - name: e2e_test_namespace
-          value: $(params.e2e_test_namespace)
-        - name: repo_url
-          value: $(params.repo_url)
-        - name: revision
-          value: $(params.revision)
       taskSpec:
         params:
         - name: SNAPSHOT
