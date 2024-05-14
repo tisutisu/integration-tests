@@ -15,9 +15,8 @@ spec:
       value: "{{ revision }}"
       default: ""
     - name: e2e_test_namespace
-      value: build-templates-e2e
-      default: ""
-      description: "namespace where e2e-tests will run"
+      default: "build-templates-e2e"
+      description: "namespace where e2e-tests will be executed"
   tasks:
     - name: prepare-e2e-tests
       params:
