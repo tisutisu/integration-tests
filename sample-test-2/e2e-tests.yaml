@@ -8,12 +8,6 @@ spec:
       name: SNAPSHOT
       default: ''
       type: string
-    - name: repo_url
-      default: "{{ repo_url }}"
-      type: string
-    - name: revision
-      default: "{{ revision }}"
-      type: string
     - name: e2e_test_namespace
       default: "build-templates-e2e"
       description: "namespace where e2e-tests will be executed"
@@ -78,12 +72,10 @@ spec:
         params:
           - name: url
             value: "https://github.com/tisutisu/integration-tests.git"
-            #value: "$(params.repo_url)"
           - name: revision
             value: "main"
           - name: pathInRepo
             value: tasks/e2e-test.yaml
-      # Added a timeout due to https://issues.redhat.com/browse/STONEBLD-2265
       timeout: "2h"
 
 
