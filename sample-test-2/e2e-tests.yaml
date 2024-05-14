@@ -9,11 +9,11 @@ spec:
       default: ''
       type: string
     - name: repo_url
-      value: "{{ repo_url }}"
-      default: ""
+      default: "{{ repo_url }}"
+      type: string
     - name: revision
-      value: "{{ revision }}"
-      default: ""
+      default: "{{ revision }}"
+      type: string
     - name: e2e_test_namespace
       default: "build-templates-e2e"
       description: "namespace where e2e-tests will be executed"
@@ -64,7 +64,7 @@ spec:
         - name: e2e_test_namespace
           value: "$(params.e2e_test_namespace)"
         - name: app_suffix
-          value: "app-intergration"
+          value: "app-integration"
         - name: ec_pipelines_repo_url
           value: "https://github.com/redhat-appstudio/build-definitions.git"
         - name: ec_pipelines_repo_revision
@@ -78,6 +78,7 @@ spec:
         params:
           - name: url
             value: "https://github.com/tisutisu/integration-tests.git"
+            #value: "$(params.repo_url)"
           - name: revision
             value: "main"
           - name: pathInRepo
