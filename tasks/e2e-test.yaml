@@ -43,7 +43,7 @@ spec:
       - name: GITHUB_TOKEN
         valueFrom:
           secretKeyRef:
-            name: github
+            name: e2e-tests-github-token
             key: token
       - name: MY_GITHUB_ORG
       # Need to be changed to redhat-appstudio-appdata
