@@ -44,7 +44,7 @@ spec:
         valueFrom:
           secretKeyRef:
             name: e2e-tests-github-token
-            key: token
+            key: password
       - name: MY_GITHUB_ORG
       # Need to be changed to redhat-appstudio-appdata
         value: susdas-qe
