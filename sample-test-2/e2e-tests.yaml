@@ -46,7 +46,7 @@ spec:
         
             volumeMounts:
               - mountPath: /root/.docker/config.json
-                subPath: .dockerconfigjson
+                subPath: .dockercfg
                 name: quay-secret
         volumes:
           - name: quay-secret
