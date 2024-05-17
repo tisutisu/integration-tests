@@ -28,8 +28,8 @@ spec:
             env:
             - name: SNAPSHOT
               value: $(params.SNAPSHOT)
-            - name: DEFAULT_QUAY_ORG
-              value: susdas
+            # - name: DEFAULT_QUAY_ORG
+            #   value: susdas
             script: |
               echo "Preparing to run the e2e-tests"
               echo "SNAPSHOT: ${SNAPSHOT}"
