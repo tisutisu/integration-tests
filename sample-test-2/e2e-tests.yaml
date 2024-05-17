@@ -46,14 +46,14 @@ spec:
 
               echo -n ${custom_source_build_bundle} | tee $(results.custom-source-build-bundle.path)
         
-            volumeMounts:
-              - mountPath: /root/.docker/config.json
-                subPath: .dockercfg
-                name: quay-secret
-        volumes:
-          - name: quay-secret
-            secret:
-              secretName: redhat-appstudio-qe-quay-token
+        #     volumeMounts:
+        #       - mountPath: /root/.docker/config.json
+        #         subPath: .dockercfg
+        #         name: quay-secret
+        # volumes:
+        #   - name: quay-secret
+        #     secret:
+        #       secretName: redhat-appstudio-qe-quay-token
 
     - name: run-e2e-tests
       params:
